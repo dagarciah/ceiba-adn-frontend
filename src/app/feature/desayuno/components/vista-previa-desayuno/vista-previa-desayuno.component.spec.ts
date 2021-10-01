@@ -3,7 +3,7 @@ import 'zone.js/testing';
 
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { VistaPreviaDesayunoComponent } from './vista-previa-desayuno.component';
-import { Desayuno } from '@desayuno/share/model/Desayuno';
+import { Desayuno } from '@desayuno/share/model/desayuno';
 
 describe('VistaPreviaDesayunoComponent', () => {
   let component: VistaPreviaDesayunoComponent;

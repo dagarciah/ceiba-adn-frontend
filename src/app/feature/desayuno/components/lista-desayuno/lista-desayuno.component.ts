@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Desayuno } from '@desayuno/share/model/Desayuno';
+import { Desayuno } from '@desayuno/share/model/desayuno';
 import { DesayunoService } from '@desayuno/share/service/desayuno.service';
 import { Observable } from 'rxjs';
 

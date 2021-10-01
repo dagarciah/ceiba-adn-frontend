@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertaService } from '@core/services/alerta.service';
-import { Desayuno } from '@desayuno/share/model/Desayuno';
+import { Desayuno } from '@desayuno/share/model/desayuno';
 import { DesayunoService } from '@desayuno/share/service/desayuno.service';
 
 @Component({

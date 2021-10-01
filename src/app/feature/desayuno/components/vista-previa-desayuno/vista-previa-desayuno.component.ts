@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Desayuno } from '@desayuno/share/model/Desayuno';
+import { Desayuno } from '@desayuno/share/model/desayuno';
 
 @Component({
   selector: 'app-vista-previa-desayuno',
