@@ -1,0 +1,14 @@
+<div class="historico">
+    <div *ngFor="let estado of agendamiento?.estados; let i = index;">
+        <div class="container">
+            <div class="estado" [ngClass]="ngClass(estado, i)">
+                <span>{{estado.nombre}}</span>
+                <span class="fecha">{{estado.fechaCambio}}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="volver">
+        <app-boton-volver></app-boton-volver>
+    </div>
+</div>

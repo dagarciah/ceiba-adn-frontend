@@ -1,0 +1,10 @@
+<div class="preview">
+    <div class="preview-thumb">
+        <span class="img" alt="preview">
+            <img [src]="desayuno.imagen" alt="preview"/>
+        </span>
+    </div>
+    <span class="preview-precio">{{desayuno.precio}}</span>
+    <h3 class="preview-titulo">{{desayuno.nombre}}</h3>
+    <app-boton-comprar-desayuno [link]="'../detalle/' + desayuno.id"></app-boton-comprar-desayuno>
+</div>

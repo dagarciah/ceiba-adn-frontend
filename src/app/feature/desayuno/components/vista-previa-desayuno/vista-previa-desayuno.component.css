@@ -1,0 +1,47 @@
+.preview {
+    padding-block: 1em;
+    padding-inline: 0.5em;
+    display: flex;
+    flex-flow: column;
+    text-align: center;
+    background-color: #f1faf1;
+    margin-inline: 0.4em;
+    margin-block-end: 0.4em;
+}
+
+.preview-titulo {
+    display: block;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 22px;
+    margin-block: 0.8em;
+}
+
+.preview-precio {
+    display: block;
+    font-size: 22px;
+    line-height: 28px;
+}
+
+.preview-precio::before {
+    content: '$ ';
+}
+
+.preview-thumb {
+    display: block;
+    position: relative;
+    width: 100%;
+    padding-block-end: 100%;
+    margin-block-end: 0.5em;
+}
+
+.preview-thumb .img {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.preview img {
+    height: 100%;
+    width: 100%;
+}

@@ -1,0 +1,77 @@
+    .historico {
+        margin: auto;
+        width: 15em;
+    }
+    
+    .historico .volver {
+        display: block;
+        margin: auto;
+        text-align: center;
+    }
+    
+    .container {
+        display: flex;
+        flex-flow: row;
+        max-width: 12em;
+        max-height: 4em;
+        padding: 2em;
+    }
+    
+    .estado {
+        flex: 0 1 100%;
+        border: none;
+        border-radius: 5%;
+        text-align: center;
+    }
+    
+    .estado.siguiente::after {
+        content: '\261f';
+        font-size: 3em;
+        color: #517753f3;
+        display: block;
+        margin-top: 0.7em;
+        text-shadow: #21222185 0em 0em 0.5em;
+    }
+    
+    .estado.pendiente {
+        background-color: rgba(59, 71, 202, 0.250);
+        box-shadow: #171444a1 0em 0.2em 0.8em;
+    }
+    
+    .estado.alistamiento {
+        background-color: rgba(59, 71, 202, 0.500);
+        box-shadow: #171444a1 0em 0.2em 0.8em;
+    }
+    
+    .estado.despachado {
+        background-color: rgba(59, 71, 202, 0.750);
+        box-shadow: #171444a1 0em 0.2em 0.8em;
+    }
+    
+    .estado.entregado {
+        background-color: rgba(59, 71, 202, 1);
+        box-shadow: #171444a1 0em 0.2em 0.8em;
+    }
+    
+    .estado.entregado span {
+        color: #bbbbbb;
+    }
+    
+    .estado.cancelado {
+        background-color: #dba225c4;
+        box-shadow: #4d2b15c5 0em 0.2em 0.8em;
+    }
+    
+    .estado span {
+        display: block;
+        margin: 5% 5% 2%;
+        font-size: large;
+        font-weight: bolder;
+        color: #13121288;
+        text-shadow: #21222185 0em 0em 0.5em;
+    }
+    
+    .estado .fecha {
+        font-size: smaller;
+        margin-top: 2%;
+    }

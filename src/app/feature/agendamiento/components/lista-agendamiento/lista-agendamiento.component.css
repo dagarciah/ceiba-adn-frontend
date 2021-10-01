@@ -1,0 +1,31 @@
+.header {
+    background-color: #eeeeee;
+}
+
+.header .col {
+    font-weight: bolder;
+}
+
+.row {
+    text-align: center;
+    min-height: 1.5em;
+    padding-block: 0.3em;
+    display: flex;
+    flex-flow: row;
+    border-bottom: solid 1px #cccccc;
+}
+
+.col {
+    flex: 0 1 25%;
+    border-inline: solid 1px #cccccc;
+}
+
+.acciones {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.acciones button {
+    flex: 0 1 30%;
+}

@@ -1,0 +1,90 @@
+.detalle {
+    display: flex;
+}
+
+.detalle-left {
+    flex: 0 1 70%;
+}
+
+.detalle-right {
+    flex: 0 1 30%;
+}
+
+.detalle-img-content {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.detalle-img-content img {
+    flex: 0 1 50%;
+}
+
+.detalle-elementos-content {
+    text-align: justify;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+.detalle-box {
+    padding-inline: 0.5em;
+    padding-block: 0.2em;
+}
+
+.detalle-descripcion-content {
+    text-align: justify;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+.detalle-precio-content {
+    font-size: 32px;
+    font-weight: bolder;
+    line-height: 36px;
+}
+
+.detalle-precio-content::before {
+    content: '$ ';
+}
+
+.titulo {
+    font-size: 18px;
+    font-weight: bolder;
+    text-align: center;
+    text-transform: uppercase;
+    width: 100%;
+}
+
+.detalle-elementos-lista {
+    list-style: none;
+}
+
+.detalle-elementos-lista li {
+    line-height: 1.5em;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+}
+
+.detalle-elementos-lista li::before {
+    content: '\2713';
+    color: green;
+    font-weight: bolder;
+    margin-inline-end: 0.2em;
+}
+
+.detalle-elemento-cantidad {
+    flex: 0 1 10%;
+    text-align: justify;
+}
+
+.detalle-elemento-nombre {
+    flex: 0 1 85%;
+    text-align: justify;
+}
+
+.volver {
+    display: block;
+    margin: auto;
+    text-align: center;
+}

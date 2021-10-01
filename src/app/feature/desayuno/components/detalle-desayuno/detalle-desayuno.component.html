@@ -1,0 +1,38 @@
+<div class="detalle">
+    <div class="detalle-left">
+        <section class="detalle-img-container detalle-box">
+            <div class="detalle-img-content">
+                <img [src]="desayuno?.imagen" alt="detalle" />
+            </div>
+        </section>
+        <section class="detalle-elementos-container detalle-box">
+            <div class="detalle-elementos-content">
+                <h3 class="titulo">{{desayuno?.nombre}}</h3>
+                <ul class="detalle-elementos-lista">
+                    <li *ngFor="let elemento of desayuno?.detalle">
+                        <span class="detalle-elemento-cantidad">{{elemento.cantidad}} {{elemento.unidad}}</span>
+                        <span class="detalle-elemento-nombre">{{elemento.nombre}}</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </div>
+    <div class="detalle-right">
+        <section class="detalle-precio detalle-box">
+            <span class="detalle-precio-content">
+                {{desayuno?.precio}}
+            </span>
+        </section>
+        <section class="detalle-descripcion detalle-box">
+            <div class="detalle-descripcion-content">
+                {{desayuno?.descripcion}}
+            </div>
+        </section>
+        <section class="detalle-formulario-container detalle-box">
+            <app-formulario-solicitud-agendamiento (solicitudAgendamiento)="onAgendamientoSolicitado($event)" [desayunoId]="desayunoId"></app-formulario-solicitud-agendamiento>
+            <div class="volver">
+                <app-boton-volver></app-boton-volver>
+            </div>
+        </section>
+    </div>
+</div>

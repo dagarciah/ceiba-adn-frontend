@@ -1,0 +1,47 @@
+.container {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
+}
+
+.container .cabecera,
+.container .acciones,
+.container .entradas {
+    display: flex;
+    flex: 100%;
+    flex-flow: column;
+    justify-content: center;
+    margin-block-start: 1em;
+    margin-block-end: 0.5em;
+}
+
+.container label {
+    font-weight: bold;
+    margin-block: 0.5em;
+}
+
+.form-control {
+    border: 1px solid #ccc;
+    border-radius: 0.2em;
+    padding: 0.2em 0.5em;
+}
+
+.container select {
+    margin-block: 0.5em;
+    width: 100%;
+}
+
+.container .acciones {
+    flex-flow: wrap;
+    justify-content: space-around;
+}
+
+.container .acciones button {
+    flex: 0 1 33%;
+}
+
+.container .titulo {
+    font-size: 1.5em;
+    display: block;
+    text-align: center;
+}

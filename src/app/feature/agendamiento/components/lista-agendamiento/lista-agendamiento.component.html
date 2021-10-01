@@ -1,0 +1,18 @@
+<div class="table">
+    <div class="row header">
+        <div class="col">C&oacute;digo</div>
+        <div class="col">Fecha Programaci&oacute;n</div>
+        <div class="col">Estado actual</div>
+        <div class="col">Acciones</div>
+    </div>
+    <div class="row" *ngFor="let agendamiento of agendamientos | async">
+        <div class="col">{{agendamiento.codigo}}</div>
+        <div class="col">{{agendamiento.programacion}}</div>
+        <div class="col">{{agendamiento.estadoActual.nombre}}</div>
+        <div class="col acciones">
+            <button class="btn btn-primario" [routerLink]="calcularEnlace(agendamiento)">Ver</button>
+            <button class="btn btn-primario" *ngIf="puedeCambiar(agendamiento)" (click)="onCambiarEstado(agendamiento)">Cambiar Estado</button>
+            <button class="btn btn-secundario" *ngIf="puedeCancelar(agendamiento)" (click)="onCancelar(agendamiento)">Cancelar</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+:root {
+    --bg-color-primario: #4ea3ee;
+    --bg-color-primario-activo: #2879c0;
+    --bg-color-secundario: #f3aa4b;
+    --bg-color-secundario-activo: #bd8339;
+    --bd-color: #ffffff;
+    --font-color: #ffffff;
+}
+
+* {
+    font: 14px Arial, Helvetica, sans-serif;
+    line-height: 18px;
+}
+
+.btn-primario {
+    background-color: var(--bg-color-primario);
+    border-color: var(--bd-color);
+    color: var(--font-color);
+    padding: 5px 20px;
+}
+
+.btn-primario:active {
+    background-color: var(--bg-color-primario-activo);
+}
+
+.btn-secundario {
+    background-color: var(--bg-color-secundario);
+    border-color: var(--bd-color);
+    color: var(--font-color);
+    padding: 5px 20px;
+}
+
+.btn-secundario:active {
+    background-color: var(--bg-color-secundario-activo);
+}
+
+.btn {
+    border: 1px solid;
+    border-radius: 0.3em;
+}
