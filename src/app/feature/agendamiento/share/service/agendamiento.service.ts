@@ -23,7 +23,7 @@ export class AgendamientoServiceImpl extends AgendamientoService {
     }
 
     crear(solicitud: SolicitudAgendamiento): Observable<ResultadoAgendamiento> {
-        return this.http.doPost<SolicitudAgendamiento, {valor: ResultadoAgendamiento}>(`${environment.baseUrl}/agendamiento`, solicitud)
+        return this.http.doPost<SolicitudAgendamiento, {valor: ResultadoAgendamiento}>(`${environment.endpoint}/agendamiento`, solicitud)
             .pipe(map(res => res.valor));
     }
 
@@ -31,15 +31,15 @@ export class AgendamientoServiceImpl extends AgendamientoService {
         let params = new HttpParams();
         (estados || []).forEach(estado => params = params.append('estado', estado));
 
-        return this.http.doGet(`${environment.baseUrl}/agendamiento`, { params });
+        return this.http.doGet(`${environment.endpoint}/agendamiento`, { params });
     }
 
     detalle(codigo: string): Observable<Agendamiento> {
-        return this.http.doGet(`${environment.baseUrl}/agendamiento/${codigo}`);
+        return this.http.doGet(`${environment.endpoint}/agendamiento/${codigo}`);
     }
 
     cambiarEstado(id: number, estado: Estado): Observable<EstadoAgendamiento> {
         const options: Options = { params: new HttpParams().set('estado', estado) };
-        return this.http.doPatch(`${environment.baseUrl}/agendamiento/${id}`, null, options);
+        return this.http.doPatch(`${environment.endpoint}/agendamiento/${id}`, null, options);
     }
 }

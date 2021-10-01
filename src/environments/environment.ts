@@ -4,8 +4,7 @@
 
 export const environment = {
   production: false,
-  endpoint: '/prospectos-vida',
-  baseUrl: 'http://localhost:8081/DesayunosEspeciales'
+  endpoint: 'http://localhost:8081/DesayunosEspeciales'
 };
 
 /*

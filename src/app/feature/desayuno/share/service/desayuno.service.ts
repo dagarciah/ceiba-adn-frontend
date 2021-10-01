@@ -17,11 +17,11 @@ export class DesayunoServiceImpl extends DesayunoService {
     }
 
     listar(): Observable<Array<Desayuno>> {
-        return this.http.doGet(`${environment.baseUrl}/desayuno`);
+        return this.http.doGet(`${environment.endpoint}/desayuno`);
     }
 
     detalle(id: number): Observable<Desayuno> {
-        return this.http.doGet(`${environment.baseUrl}/desayuno/${id}`);
+        return this.http.doGet(`${environment.endpoint}/desayuno/${id}`);
     }
 
 }
