@@ -16,7 +16,7 @@ export class FormularioSolicitudAgendamientoComponent implements OnInit {
     @Output() solicitudAgendamiento = new EventEmitter<ResultadoAgendamiento>();
     formulario: FormularioSolicitudAgendamiento;
 
-    constructor(private service: AgendamientoService) {
+    constructor(private service: AgendamientoService, private alerta: AlertaService) {
     }
 
     ngOnInit(): void {
@@ -29,12 +29,12 @@ export class FormularioSolicitudAgendamientoComponent implements OnInit {
                 next: resultado => this.solicitudAgendamiento.emit(resultado),
                 error: (e) => {
                     if (e.error?.nombreExcepcion === 'ExcepcionFechaAgendamientoNoValida') {
-                        AlertaService.informativa(
+                        this.alerta.informativa(
                             'Error de agendamiento',
                             'Recuerda que solo los agendamientos realizados de Lunes a Sabado entre 8am y 12 m podran ser agendados para el siguiente dia. En caso contrario se deberaa agendar para un dia despues del proximo dia habil.'
                         );
                     } else {
-                        AlertaService.errorInesperado('Consulta de Agendamiento');
+                        this.alerta.errorInesperado('Consulta de Agendamiento');
                     }
                 }
             });

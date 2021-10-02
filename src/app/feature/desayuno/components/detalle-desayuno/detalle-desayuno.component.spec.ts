@@ -1,19 +1,24 @@
 import { FormularioSolicitudAgendamientoComponent } from '@agendamiento/components/formulario-solicitud-agendamiento/formulario-solicitud-agendamiento.component';
 import { AgendamientoService, AgendamientoServiceImpl } from '@agendamiento/share/service/agendamiento.service';
 import { HttpClientModule } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ActivatedRoute, convertToParamMap } from '@angular/router';
+import { ActivatedRoute, convertToParamMap, Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { BotonVolverComponent } from '@core/components/boton-volver/boton-volver.component';
+import { AlertaService } from '@core/services/alerta.service';
 import { HttpService } from '@core/services/http.service';
 import { DesayunoService, DesayunoServiceStub } from '@desayuno/share/service/desayuno.service';
 import { DpDatePickerModule } from 'ng2-date-picker';
+import { Observable, of } from 'rxjs';
 import { DetalleDesayunoComponent } from './detalle-desayuno.component';
 
 describe('DetalleDesayunoComponent', () => {
   let component: DetalleDesayunoComponent;
   let fixture: ComponentFixture<DetalleDesayunoComponent>;
+  const alertaSpy = jasmine.createSpy('informativa');
+  const router = { navigate: jasmine.createSpy('navigate') };
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -26,14 +31,17 @@ describe('DetalleDesayunoComponent', () => {
         FormularioSolicitudAgendamientoComponent,
         BotonVolverComponent
       ],
-      providers: [HttpService, {
-        provide: ActivatedRoute,
-        useValue: {
-          snapshot: {
-            paramMap: convertToParamMap({ id: 1 })
+      providers: [
+        { provide: Router, useValue: router },
+        { provide: AlertaService, useValue: new AlertaServiceMock(alertaSpy) },
+        HttpService, {
+          provide: ActivatedRoute,
+          useValue: {
+            snapshot: {
+              paramMap: convertToParamMap({ id: 1 })
+            }
           }
-        }
-      },
+        },
         { provide: DesayunoService, useClass: DesayunoServiceStub },
         { provide: AgendamientoService, useClass: AgendamientoServiceImpl }
       ]
@@ -53,4 +61,24 @@ describe('DetalleDesayunoComponent', () => {
     expect(component.desayunoId).toEqual(1);
     expect(component.desayuno.id).toEqual(1);
   });
+
+  it('deberia llamar alerta informativa', () => {
+    const parametros = { codigo: 'COFIGO01', estado: 'PENDIENTE' };
+    component.onAgendamientoSolicitado(parametros);
+    expect(alertaSpy)
+      .toHaveBeenCalledWith(component.TITULO_ALERTA, component.formatearMensaje(parametros.codigo, parametros.estado));
+    expect(router.navigate)
+      .toHaveBeenCalledWith(['/desayunos/lista']);
+  });
 });
+
+
+@Injectable()
+class AlertaServiceMock {
+  constructor(private alertaSpy: (titulo: string, html: string) => Observable<any>) { }
+
+  informativa(titulo: string, html: string) {
+    this.alertaSpy(titulo, html);
+    return of({});
+  }
+}

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Desayuno } from '@desayuno/share/model/desayuno';
 import { DesayunoService } from '@desayuno/share/service/desayuno.service';
 import { Observable } from 'rxjs';
@@ -7,9 +7,11 @@ import { Observable } from 'rxjs';
     templateUrl: './lista-desayuno.component.html',
     styleUrls: ['./lista-desayuno.component.css']
 })
-export class ListaDesayunoComponent {
+export class ListaDesayunoComponent implements OnInit {
     desayunos: Observable<Array<Desayuno>>;
-    constructor(service: DesayunoService) {
-        this.desayunos = service.listar();
+    constructor(private service: DesayunoService) {}
+    
+    ngOnInit(): void {
+        this.desayunos = this.service.listar();
     }
 }

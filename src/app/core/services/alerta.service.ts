@@ -1,9 +1,11 @@
+import { Injectable } from '@angular/core';
 import { from, Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 
+@Injectable()
 export class AlertaService {
-    static errorInesperado(titulo: string) {
+    errorInesperado(titulo: string) {
         Swal.fire({
             html: 'Ocurrio un error inesperado, por favor contacte al administrador',
             title: titulo,
@@ -13,7 +15,8 @@ export class AlertaService {
             cancelButtonText: 'Cerrar'
         });
     }
-    static confirmacion(titulo: string, html: string) {
+    
+    confirmacion(titulo: string, html: string) {
         return from(
             Swal.fire({
                 html,
@@ -25,7 +28,8 @@ export class AlertaService {
             })
         ).pipe(switchMap(a => of({ confirmado: a.isConfirmed })));
     }
-    static informativa(titulo: string, html: string): Observable<AccionConfirmado> {
+    
+    informativa(titulo: string, html: string): Observable<AccionConfirmado> {
         return from(
             Swal.fire({
                 html,

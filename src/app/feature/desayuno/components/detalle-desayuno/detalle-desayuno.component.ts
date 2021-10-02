@@ -9,18 +9,24 @@ import { DesayunoService } from '@desayuno/share/service/desayuno.service';
     styleUrls: ['./detalle-desayuno.component.css']
 })
 export class DetalleDesayunoComponent implements OnInit {
+    readonly TITULO_ALERTA = 'Operacion Comfirmada';
+
     desayunoId: number;
     desayuno: Desayuno;
 
-    constructor(private service: DesayunoService, private route: ActivatedRoute, private router: Router) {}
+    constructor(private service: DesayunoService, private alerta: AlertaService, private route: ActivatedRoute, private router: Router) { }
 
     ngOnInit(): void {
         this.desayunoId = parseInt(this.route.snapshot.paramMap.get('id'), 10);
         this.service.detalle(this.desayunoId).subscribe(_$ => this.desayuno = _$);
     }
 
-    onAgendamientoSolicitado({codigo, estado}) {
-        AlertaService.informativa('Operacion Comfirmada', `Se ha creado el agendamiento '${codigo}' se encuentra en estado '${estado}'.`)
+    onAgendamientoSolicitado({ codigo, estado }) {
+        this.alerta.informativa(this.TITULO_ALERTA, this.formatearMensaje(codigo, estado))
             .subscribe(_$ => this.router.navigate(['/desayunos/lista']));
+    }
+
+    formatearMensaje(codigo: any, estado: any): string {
+        return `Se ha creado el agendamiento '${codigo}' se encuentra en estado '${estado}'.`;
     }
 }
