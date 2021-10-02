@@ -6,7 +6,7 @@ import { HttpService } from 'src/app/core/services/http.service';
 import { HttpResponse } from '@angular/common/http';
 import { DesayunoService, DesayunoServiceImpl } from './desayuno.service';
 import { Desayuno } from '../model/desayuno';
-import { DetalleDesayuno } from '../model/detalle-desayuno';
+import { DesayunoDataTestBuilder } from '../model/desayuno.testdatabuilder';
 
 describe('DesayunoService', () => {
   let httpMock: HttpTestingController;
@@ -16,7 +16,7 @@ describe('DesayunoService', () => {
   beforeEach(() => {
     const injector = TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [{provide: DesayunoService, useClass: DesayunoServiceImpl}, HttpService]
+      providers: [{ provide: DesayunoService, useClass: DesayunoServiceImpl }, HttpService]
     });
     httpMock = injector.inject(HttpTestingController);
     service = TestBed.inject(DesayunoService);
@@ -52,32 +52,3 @@ describe('DesayunoService', () => {
   });
 
 });
-
-class DesayunoDataTestBuilder {
-  id: number;
-  nombre: string;
-  descripcion?: string;
-  imagen: string;
-  precio: number;
-  detalle?: Array<DetalleDesayuno>;
-
-  constructor() {
-    this.id = 1;
-    this.nombre = 'Desayuno';
-    this.descripcion = 'Descripcion';
-    this.imagen = 'Imagen';
-    this.precio = 0;
-    this.detalle = [{ nombre: 'Detalle', cantidad: 1, unidad: 'und' }];
-  }
-
-  build(): Desayuno {
-    return {
-      id: this.id,
-      nombre: this.nombre,
-      descripcion: this.descripcion,
-      imagen: this.imagen,
-      precio: this.precio,
-      detalle: this.detalle
-    };
-  }
-}

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BotonComprarComponent } from './components/boton-comprar-desayuno/boton-comprar-desayuno.component';
+import { BotonComprarDesayunoComponent } from './components/boton-comprar-desayuno/boton-comprar-desayuno.component';
 import { ListaDesayunoComponent } from './components/lista-desayuno/lista-desayuno.component';
 import { VistaPreviaDesayunoComponent } from './components/vista-previa-desayuno/vista-previa-desayuno.component';
 import { SharedModule } from '@shared/shared.module';
@@ -15,7 +15,7 @@ import { CoreModule } from '@core/core.module';
     declarations: [
         DesayunoComponent,
         DetalleDesayunoComponent,
-        BotonComprarComponent,
+        BotonComprarDesayunoComponent,
         VistaPreviaDesayunoComponent,
         ListaDesayunoComponent
     ],

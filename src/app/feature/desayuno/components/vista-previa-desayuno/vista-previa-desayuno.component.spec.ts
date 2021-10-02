@@ -1,7 +1,7 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { VistaPreviaDesayunoComponent } from './vista-previa-desayuno.component';
 import { Desayuno } from '@desayuno/share/model/desayuno';
-import { BotonComprarComponent } from '../boton-comprar-desayuno/boton-comprar-desayuno.component';
+import { BotonComprarDesayunoComponent } from '../boton-comprar-desayuno/boton-comprar-desayuno.component';
 import { RouterTestingModule } from '@angular/router/testing';
 
 describe('VistaPreviaDesayunoComponent', () => {
@@ -11,7 +11,7 @@ describe('VistaPreviaDesayunoComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
-      declarations: [ BotonComprarComponent, VistaPreviaDesayunoComponent ]
+      declarations: [ BotonComprarDesayunoComponent, VistaPreviaDesayunoComponent ]
     })
     .compileComponents();
   }));
@@ -19,11 +19,12 @@ describe('VistaPreviaDesayunoComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(VistaPreviaDesayunoComponent);
     component = fixture.componentInstance;
-    component.desayuno = {} as Desayuno;
+    component.desayuno = {id: 1} as Desayuno;
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+    expect(component.desayuno.id).toEqual(1);
   });
 });

@@ -5,6 +5,6 @@ import { Component, Input } from '@angular/core';
     templateUrl: './boton-comprar-desayuno.component.html',
     styleUrls: ['./boton-comprar-desayuno.component.css']
   })
-export class BotonComprarComponent {
+export class BotonComprarDesayunoComponent {
   @Input() link: string;
 }
