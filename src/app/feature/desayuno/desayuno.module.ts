@@ -10,7 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DesayunoService, DesayunoServiceImpl } from './share/service/desayuno.service';
 import { AgendamientoModule } from '@agendamiento/agendamiento.module';
 import { CoreModule } from '@core/core.module';
-import { AlertaService } from '@core/services/alerta.service';
+import { AlertaService, IAlertaService } from '@core/services/alerta.service';
 
 @NgModule({
     declarations: [
@@ -28,7 +28,7 @@ import { AlertaService } from '@core/services/alerta.service';
         ReactiveFormsModule
     ],
     providers: [
-        AlertaService,
+        { provide: IAlertaService, useClass: AlertaService},
         { provide: DesayunoService, useClass: DesayunoServiceImpl }
     ]
 })

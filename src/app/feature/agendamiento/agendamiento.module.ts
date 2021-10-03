@@ -10,7 +10,7 @@ import { ListaAgendamientoComponent } from './components/lista-agendamiento/list
 import { HistoricoAgendamientoComponent } from './components/historico-agendamiento/historico-agendamiento.component';
 import { FormularioSeguimientoAgendamientoComponent } from './components/seguimiento-agendamiento/seguimiento-agendamiento.component';
 import { CoreModule } from '@core/core.module';
-import { AlertaService } from '@core/services/alerta.service';
+import { AlertaService, IAlertaService } from '@core/services/alerta.service';
 
 @NgModule({
     declarations: [
@@ -29,7 +29,7 @@ import { AlertaService } from '@core/services/alerta.service';
     ],
     exports: [FormularioSolicitudAgendamientoComponent],
     providers: [
-        AlertaService,
+        { provide: IAlertaService, useClass: AlertaService },
         { provide: AgendamientoService, useClass: AgendamientoServiceImpl }
     ]
 })

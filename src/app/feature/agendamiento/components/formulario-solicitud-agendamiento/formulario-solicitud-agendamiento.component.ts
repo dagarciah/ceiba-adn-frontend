@@ -4,8 +4,9 @@ import datePickerConfig from '@agendamiento/share/model/datepicker-config';
 import { IDatePickerConfig } from 'ng2-date-picker';
 import { AgendamientoService } from '@agendamiento/share/service/agendamiento.service';
 import { ResultadoAgendamiento } from '@agendamiento/share/model/resultado-agendamiento';
-import { AlertaService } from '@core/services/alerta.service';
+import { IAlertaService } from '@core/services/alerta.service';
 
+const FECHA_AGENDAMIENTO_NO_VALIDA = 'ExcepcionFechaAgendamientoNoValida';
 @Component({
     selector: 'app-formulario-solicitud-agendamiento',
     templateUrl: './formulario-solicitud-agendamiento.component.html',
@@ -16,7 +17,10 @@ export class FormularioSolicitudAgendamientoComponent implements OnInit {
     @Output() solicitudAgendamiento = new EventEmitter<ResultadoAgendamiento>();
     formulario: FormularioSolicitudAgendamiento;
 
-    constructor(private service: AgendamientoService, private alerta: AlertaService) {
+    readonly TITULO_OPERACION_AGENDAMIENTO = 'Error de agendamiento';
+    readonly TEXTO_FECHA_AGENDAMIENTO_INVALIDA = 'Recuerda que solo los agendamientos realizados de Lunes a Sabado entre 8am y 12 m podran ser agendados para el siguiente dia. En caso contrario se deberaa agendar para un dia despues del proximo dia habil.';
+
+    constructor(private service: AgendamientoService, private alerta: IAlertaService) {
     }
 
     ngOnInit(): void {
@@ -24,20 +28,20 @@ export class FormularioSolicitudAgendamientoComponent implements OnInit {
     }
 
     onSolicitar(): void {
-        this.service.crear(this.formulario.Valor)
-            .subscribe({
-                next: resultado => this.solicitudAgendamiento.emit(resultado),
-                error: (e) => {
-                    if (e.error?.nombreExcepcion === 'ExcepcionFechaAgendamientoNoValida') {
-                        this.alerta.informativa(
-                            'Error de agendamiento',
-                            'Recuerda que solo los agendamientos realizados de Lunes a Sabado entre 8am y 12 m podran ser agendados para el siguiente dia. En caso contrario se deberaa agendar para un dia despues del proximo dia habil.'
-                        );
-                    } else {
-                        this.alerta.errorInesperado('Consulta de Agendamiento');
+        if (this.formulario.valid) {
+            this.service.crear(this.formulario.Valor)
+                .subscribe({
+                    next: resultado => this.solicitudAgendamiento.emit(resultado),
+                    error: ({ error }) => {
+                        if (error?.nombreExcepcion === FECHA_AGENDAMIENTO_NO_VALIDA) {
+                            this.alerta.informativa(this.TITULO_OPERACION_AGENDAMIENTO,
+                                this.TEXTO_FECHA_AGENDAMIENTO_INVALIDA);
+                        } else {
+                            this.alerta.errorInesperado(this.TITULO_OPERACION_AGENDAMIENTO);
+                        }
                     }
-                }
-            });
+                });
+        }
     }
 
     get datePickerConfig(): IDatePickerConfig {

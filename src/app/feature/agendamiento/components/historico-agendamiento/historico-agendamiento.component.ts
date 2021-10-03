@@ -2,7 +2,9 @@ import { Agendamiento, EstadoAgendamiento } from '@agendamiento/share/model/agen
 import { AgendamientoService } from '@agendamiento/share/service/agendamiento.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AlertaService } from '@core/services/alerta.service';
+import { IAlertaService } from '@core/services/alerta.service';
+
+const AGENDAMIENTO_NO_ENCONTRADO = 'AgendamientoNoEncontrado';
 
 @Component({
     templateUrl: './historico-agendamiento.component.html',
@@ -11,20 +13,21 @@ import { AlertaService } from '@core/services/alerta.service';
 export class HistoricoAgendamientoComponent implements OnInit {
     agendamiento: Agendamiento;
 
-    constructor(private service: AgendamientoService, private route: ActivatedRoute) { }
+    readonly TITULO_AGENDAMIENTO_NO_ENCONTRADO = 'Agendamiento No Encontrado';
+    readonly TEXTO_AGENDAMIENTO_NO_ENCONTRADO = 'No hemos podido obtener un agendamiento para el codigo ingresado';
+    readonly TITULO_ERROR_INESPERADO = 'Consulta de Agendamiento';
+
+    constructor(private service: AgendamientoService, private alerta: IAlertaService, private route: ActivatedRoute) { }
 
     ngOnInit(): void {
         const codigo = this.route.snapshot.paramMap.get('codigo');
         this.service.detalle(codigo).subscribe({
-            next: _$ => this.agendamiento = _$,
-            error: (e) => {
-                if (e.error?.nombreExcepcion === 'AgendamientoNoEncontrado') {
-                    AlertaService.informativa(
-                        'Agendamiento No Encontrado',
-                        'No hemos podido obtener un agendamiento para el codigo ingresado'
-                    )
+            next: agendamiento => this.agendamiento = agendamiento,
+            error: ({ error }) => {
+                if (error?.nombreExcepcion === AGENDAMIENTO_NO_ENCONTRADO) {
+                    this.alerta.informativa(this.TITULO_AGENDAMIENTO_NO_ENCONTRADO, this.TEXTO_AGENDAMIENTO_NO_ENCONTRADO);
                 } else {
-                    AlertaService.errorInesperado('Consulta de Agendamiento');
+                    this.alerta.errorInesperado(this.TITULO_ERROR_INESPERADO);
                 }
             }
         });

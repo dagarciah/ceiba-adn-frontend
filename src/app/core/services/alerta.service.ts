@@ -3,8 +3,14 @@ import { from, Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 
+export abstract class IAlertaService {
+    abstract errorInesperado(titulo: string): void;
+    abstract confirmacion(titulo: string, html: string): Observable<AccionConfirmado>;
+    abstract informativa(titulo: string, html: string): Observable<AccionConfirmado>;
+}
+
 @Injectable()
-export class AlertaService {
+export class AlertaService extends IAlertaService {
     errorInesperado(titulo: string) {
         Swal.fire({
             html: 'Ocurrio un error inesperado, por favor contacte al administrador',
@@ -15,8 +21,8 @@ export class AlertaService {
             cancelButtonText: 'Cerrar'
         });
     }
-    
-    confirmacion(titulo: string, html: string) {
+
+    confirmacion(titulo: string, html: string): Observable<AccionConfirmado> {
         return from(
             Swal.fire({
                 html,
@@ -28,7 +34,7 @@ export class AlertaService {
             })
         ).pipe(switchMap(a => of({ confirmado: a.isConfirmed })));
     }
-    
+
     informativa(titulo: string, html: string): Observable<AccionConfirmado> {
         return from(
             Swal.fire({
@@ -38,6 +44,36 @@ export class AlertaService {
                 confirmButtonText: 'Aceptar'
             })
         ).pipe(switchMap(a => of({ confirmado: a.isConfirmed })));
+    }
+}
+
+export class AlertaServiceMock extends IAlertaService {
+    valorConfirmacion = false;
+
+    constructor(private spy: IAlertaService) {
+        super();
+     }
+
+    errorInesperado(titulo: string): void {
+        this.spy.errorInesperado(titulo);
+    }
+
+    informativa(titulo: string, html: string): Observable<AccionConfirmado> {
+        this.spy.informativa(titulo, html);
+        return of({ confirmado: this.valorConfirmacion });
+    }
+
+    confirmacion(titulo: string, html: string) {
+        this.spy.confirmacion(titulo, html);
+        return of({ confirmado: this.valorConfirmacion });
+    }
+
+    fueConfirmado(): void {
+        this.valorConfirmacion = true;
+    }
+
+    fueCancelado(): void {
+        this.valorConfirmacion = false;
     }
 }
 

@@ -1,7 +1,7 @@
 import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { HttpService, Options } from '@core/services/http.service';
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Agendamiento, Estado, EstadoAgendamiento } from '../model/agendamiento';
@@ -23,7 +23,7 @@ export class AgendamientoServiceImpl extends AgendamientoService {
     }
 
     crear(solicitud: SolicitudAgendamiento): Observable<ResultadoAgendamiento> {
-        return this.http.doPost<SolicitudAgendamiento, {valor: ResultadoAgendamiento}>(`${environment.endpoint}/agendamiento`, solicitud)
+        return this.http.doPost<SolicitudAgendamiento, { valor: ResultadoAgendamiento }>(`${environment.endpoint}/agendamiento`, solicitud)
             .pipe(map(res => res.valor));
     }
 
@@ -46,15 +46,24 @@ export class AgendamientoServiceImpl extends AgendamientoService {
 
 @Injectable()
 export class AgendamientoServiceStub extends AgendamientoService {
+    error: any;
 
-    crear(_solicitud: SolicitudAgendamiento): Observable<ResultadoAgendamiento> {
+    crear(_$: SolicitudAgendamiento): Observable<ResultadoAgendamiento> {
+        if (!!this.error) {
+            return throwError(this.error);
+        }
+        
         return of({
             codigo: 'DASDWER4',
             estado: 'PENDIENTE'
         });
     }
 
-    listar(_estados?: Estado[]): Observable<Array<Agendamiento>> {
+    listar(_$?: Estado[]): Observable<Array<Agendamiento>> {
+        if (!!this.error) {
+            return throwError(this.error);
+        }
+
         return of([{
             id: 1,
             codigo: 'DASDWER4',
@@ -70,11 +79,19 @@ export class AgendamientoServiceStub extends AgendamientoService {
             ]
         }]);
     }
-    detalle(_codigo: string): Observable<Agendamiento> {
+    detalle(_$: string): Observable<Agendamiento> {
+        if (!!this.error) {
+            return throwError(this.error);
+        }
+
         return this.listar().pipe(map(l => l[0]));
     }
 
-    cambiarEstado(_id: number): Observable<EstadoAgendamiento> {
-        return of({ nombre: 'CANCELADO', fechaCambio: '2021-09-28 13:24:03' }); 
+    cambiarEstado(_$: number): Observable<EstadoAgendamiento> {
+        if (!!this.error) {
+            return throwError(this.error);
+        }
+
+        return of({ nombre: 'CANCELADO', fechaCambio: '2021-09-28 13:24:03' });
     }
 }

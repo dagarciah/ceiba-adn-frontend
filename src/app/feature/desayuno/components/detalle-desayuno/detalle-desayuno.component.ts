@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AlertaService } from '@core/services/alerta.service';
+import { IAlertaService } from '@core/services/alerta.service';
 import { Desayuno } from '@desayuno/share/model/desayuno';
 import { DesayunoService } from '@desayuno/share/service/desayuno.service';
 
@@ -14,7 +14,7 @@ export class DetalleDesayunoComponent implements OnInit {
     desayunoId: number;
     desayuno: Desayuno;
 
-    constructor(private service: DesayunoService, private alerta: AlertaService, private route: ActivatedRoute, private router: Router) { }
+    constructor(private service: DesayunoService, private alerta: IAlertaService, private route: ActivatedRoute, private router: Router) { }
 
     ngOnInit(): void {
         this.desayunoId = parseInt(this.route.snapshot.paramMap.get('id'), 10);
