@@ -1,9 +1,11 @@
 import { Agendamiento } from '@agendamiento/share/model/agendamiento';
-import { AgendamientoService, AgendamientoServiceStub } from '@agendamiento/share/service/agendamiento.service';
+import { AgendamientoService } from '@agendamiento/share/service/agendamiento.service';
+import { AgendamientoServiceStub } from '@agendamiento/share/service/agendamiento.service-stub';
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AlertaServiceMock, IAlertaService } from '@core/services/alerta.service';
+import { IAlertaService } from '@core/services/alerta.service';
+import { AlertaServiceMock } from '@core/services/alerta.service-mock';
 import { Observable } from 'rxjs';
 import { ListaAgendamientoComponent } from './lista-agendamiento.component';
 

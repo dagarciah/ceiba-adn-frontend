@@ -6,9 +6,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, convertToParamMap, Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { BotonVolverComponent } from '@core/components/boton-volver/boton-volver.component';
-import { IAlertaService, AlertaServiceMock } from '@core/services/alerta.service';
+import { IAlertaService } from '@core/services/alerta.service';
+import { AlertaServiceMock } from '@core/services/alerta.service-mock';
 import { HttpService } from '@core/services/http.service';
-import { DesayunoService, DesayunoServiceStub } from '@desayuno/share/service/desayuno.service';
+import { DesayunoService } from '@desayuno/share/service/desayuno.service';
+import { DesayunoServiceStub } from '@desayuno/share/service/desayuno.service-stub';
 import { DpDatePickerModule } from 'ng2-date-picker';
 import { DetalleDesayunoComponent } from './detalle-desayuno.component';
 

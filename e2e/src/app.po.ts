@@ -2,6 +2,7 @@ import { browser, by, element } from 'protractor';
 
 export class AppPage {
   navigateTo() {
+    browser.waitForAngular();
     return browser.get(browser.baseUrl) as Promise<any>;
   }
 

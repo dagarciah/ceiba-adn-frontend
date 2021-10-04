@@ -1,7 +1,9 @@
-import { AgendamientoService, AgendamientoServiceStub } from '@agendamiento/share/service/agendamiento.service';
+import { AgendamientoService} from '@agendamiento/share/service/agendamiento.service';
+import { AgendamientoServiceStub } from '@agendamiento/share/service/agendamiento.service-stub';
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AlertaServiceMock, IAlertaService } from '@core/services/alerta.service';
+import { IAlertaService } from '@core/services/alerta.service';
+import { AlertaServiceMock } from '@core/services/alerta.service-mock';
 import { DpDatePickerModule } from 'ng2-date-picker';
 import { FormularioSolicitudAgendamientoComponent } from './formulario-solicitud-agendamiento.component';
 
