@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormularioSolicitudAgendamiento } from '@agendamiento/share/model/solicitud-agendamiento';
-import DatePickerConfiguration from '@agendamiento/share/model/DatePickerConfiguration ';
+import DatePickerConfiguration from '@agendamiento/share/model/DatePickerConfiguration';
 import { IDatePickerConfig } from 'ng2-date-picker';
 import { AgendamientoService } from '@agendamiento/share/service/agendamiento.service';
 import { ResultadoAgendamiento } from '@agendamiento/share/model/resultado-agendamiento';
