@@ -26,7 +26,7 @@ export class DetalleDesayunoComponent implements OnInit {
             .subscribe(_$ => this.router.navigate(['/desayunos/lista']));
     }
 
-    formatearMensaje(codigo: any, estado: any): string {
+    formatearMensaje(codigo: string, estado: string): string {
         return `Se ha creado el agendamiento '${codigo}' se encuentra en estado '${estado}'.`;
     }
 }

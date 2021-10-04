@@ -50,9 +50,9 @@ export class HttpService {
     return this.http.get<T>(serviceUrl, ropts);
   }
 
-  public doPatch<T>(serviceUrl: string, body: any = {}, opts?: Options): Observable<T> {
+  public doPatch<T, R>(serviceUrl: string, body: T, opts?: Options): Observable<R> {
     const ropts = this.createOptions(opts);
-    return this.http.patch<T>(serviceUrl, body, ropts);
+    return this.http.patch<R>(serviceUrl, body, ropts);
   }
 
   public doPost<T, R>(serviceUrl: string, body: T, opts?: Options): Observable<R> {

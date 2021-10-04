@@ -51,7 +51,8 @@ export class DesayunoServiceStub extends DesayunoService {
             nombre: 'Ancheta de Amor',
             precio: 155000,
             imagen: 'https://www.regalosquehablan.com/media/img/productos/medium/desayuno-ancheta-de-mi-tierra.jpg',
-            descripcion: 'La sorpresa es que le llegue a tu ser querido algo que no se espera y menos que seas es el primero en sorprenderle con uno de nuestros desayunos sorpresa',
+            descripcion: 'La sorpresa es que le llegue a tu ser querido algo que no se espera y menos que seas es'
+                + ' el primero en sorprenderle con uno de nuestros desayunos sorpresa',
             detalle: [
                 { nombre: 'Bandeja de patas en madera', cantidad: 1, unidad: 'und' },
                 { nombre: 'Precioso Peluche y de excelente calidad -león, tigre, oso motivo según disponibilidad', cantidad: 27, unidad: 'cm' },

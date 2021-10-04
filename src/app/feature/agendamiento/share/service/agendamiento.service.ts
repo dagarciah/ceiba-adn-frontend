@@ -46,13 +46,13 @@ export class AgendamientoServiceImpl extends AgendamientoService {
 
 @Injectable()
 export class AgendamientoServiceStub extends AgendamientoService {
-    error: any;
+    error: Error;
 
     crear(_$: SolicitudAgendamiento): Observable<ResultadoAgendamiento> {
         if (!!this.error) {
             return throwError(this.error);
         }
-        
+
         return of({
             codigo: 'DASDWER4',
             estado: 'PENDIENTE'

@@ -10,7 +10,7 @@ export class FormularioSolicitudAgendamiento extends FormGroup {
         });
     }
 
-    get Valor(): SolicitudAgendamiento {
+    get valor(): SolicitudAgendamiento {
         const {fecha, direccion, desayuno, franja} = this.value;
         return {
             direccion,

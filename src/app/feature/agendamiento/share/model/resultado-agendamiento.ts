@@ -1,4 +1,4 @@
-import { Estado } from "./agendamiento";
+import { Estado } from './agendamiento';
 
 export interface ResultadoAgendamiento {
     codigo: string;

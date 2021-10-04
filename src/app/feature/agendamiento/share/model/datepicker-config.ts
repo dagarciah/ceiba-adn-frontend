@@ -1,7 +1,7 @@
 import * as moment from 'moment';
 import { IDatePickerConfig } from 'ng2-date-picker';
 
-const CONFIGURACION = {
+const DatePickerConfiguration = {
     closeOnSelect: false,
     format: 'YYYY-MM-DD',
     firstDayOfWeek: 'mo',
@@ -10,4 +10,4 @@ const CONFIGURACION = {
     showGoToCurrent: true
 } as IDatePickerConfig;
 
-export default CONFIGURACION;
+export default DatePickerConfiguration;

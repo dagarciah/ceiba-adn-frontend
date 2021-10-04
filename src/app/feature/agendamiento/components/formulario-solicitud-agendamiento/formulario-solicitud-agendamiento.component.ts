@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormularioSolicitudAgendamiento } from '@agendamiento/share/model/solicitud-agendamiento';
-import datePickerConfig from '@agendamiento/share/model/datepicker-config';
+import DatePickerConfiguration from '@agendamiento/share/model/datepicker-config';
 import { IDatePickerConfig } from 'ng2-date-picker';
 import { AgendamientoService } from '@agendamiento/share/service/agendamiento.service';
 import { ResultadoAgendamiento } from '@agendamiento/share/model/resultado-agendamiento';
@@ -18,7 +18,8 @@ export class FormularioSolicitudAgendamientoComponent implements OnInit {
     formulario: FormularioSolicitudAgendamiento;
 
     readonly TITULO_OPERACION_AGENDAMIENTO = 'Error de agendamiento';
-    readonly TEXTO_FECHA_AGENDAMIENTO_INVALIDA = 'Recuerda que solo los agendamientos realizados de Lunes a Sabado entre 8am y 12 m podran ser agendados para el siguiente dia. En caso contrario se deberaa agendar para un dia despues del proximo dia habil.';
+    readonly TEXTO_FECHA_AGENDAMIENTO_INVALIDA = 'Recuerda que solo los agendamientos realizados de Lunes a Sabado entre 8am y 12m '
+        + 'podran ser agendados para el siguiente dia. En caso contrario se deberaa agendar para un dia despues del proximo dia habil.';
 
     constructor(private service: AgendamientoService, private alerta: IAlertaService) {
     }
@@ -29,7 +30,7 @@ export class FormularioSolicitudAgendamientoComponent implements OnInit {
 
     onSolicitar(): void {
         if (this.formulario.valid) {
-            this.service.crear(this.formulario.Valor)
+            this.service.crear(this.formulario.valor)
                 .subscribe({
                     next: resultado => this.solicitudAgendamiento.emit(resultado),
                     error: ({ error }) => {
@@ -45,6 +46,6 @@ export class FormularioSolicitudAgendamientoComponent implements OnInit {
     }
 
     get datePickerConfig(): IDatePickerConfig {
-        return datePickerConfig;
+        return DatePickerConfiguration;
     }
 }

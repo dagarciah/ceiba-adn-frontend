@@ -60,7 +60,7 @@ export class ListaAgendamientoComponent implements OnInit {
         return `../historico/${agendamiento.codigo}`;
     }
 
-    formatearTextoCambioEstado(estadoActual: string, proximoEstado: any): string {
+    formatearTextoCambioEstado(estadoActual: string, proximoEstado: string): string {
         return `El agendamiento pasar&aacute; de ${estadoActual} a ${proximoEstado}`;
     }
 
