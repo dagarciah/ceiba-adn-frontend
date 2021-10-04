@@ -18,7 +18,7 @@ describe('workspace-project Producto', () => {
         const DESCRIPCION_PRODUCTO = 'Producto de pruebas';
 
         page.navigateTo();
-        navBar.clickBotonProductos();
+        //navBar.clickBotonProductos();
         producto.clickBotonCrearProductos();
         producto.ingresarId(ID_PRODUCTO);
         producto.ingresarDescripcion(DESCRIPCION_PRODUCTO);
