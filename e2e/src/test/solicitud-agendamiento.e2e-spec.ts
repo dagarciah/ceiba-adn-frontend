@@ -23,13 +23,11 @@ describe('workspace-project Solicitud Agendamiento', () => {
 
         solicitudAgendamiento.seleccionaUnaFranja('07:00:00');
         solicitudAgendamiento.ingresaDireccion('Calle Falsa 123');
-        solicitudAgendamiento.seleccionaUnaFecha(new Date().getDate() + 2);
+        solicitudAgendamiento.seleccionaUnaFecha(new Date().getDate() + 5);
 
         solicitudAgendamiento.clickBotonSolicitar();
 
-        // Adicionamos las validaciones despues de la creación
-        solicitudAgendamiento.alertaInformativa()
-            .then(e => {expect(e.isPresent()).toBeTruthy()})
-
+        // Adicionamos las validaciones despues de la creación        
+        expect(solicitudAgendamiento.mostroNotificacionInformativa()).toBe(true);
     });
 });

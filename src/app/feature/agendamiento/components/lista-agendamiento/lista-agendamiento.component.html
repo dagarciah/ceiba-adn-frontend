@@ -10,9 +10,9 @@
         <div class="col">{{agendamiento.programacion}}</div>
         <div class="col">{{agendamiento.estadoActual.nombre}}</div>
         <div class="col acciones">
-            <button class="btn btn-primario" [routerLink]="calcularEnlace(agendamiento)">Ver</button>
-            <button class="btn btn-primario" *ngIf="puedeCambiar(agendamiento)" (click)="onCambiarEstado(agendamiento)">Cambiar Estado</button>
-            <button class="btn btn-secundario" *ngIf="puedeCancelar(agendamiento)" (click)="onCancelar(agendamiento)">Cancelar</button>
+            <button class="btn btn-primario ver" [routerLink]="calcularEnlace(agendamiento)" [title]="agendamiento.codigo">Ver</button>
+            <button class="btn btn-primario cambiar-estado" *ngIf="puedeCambiar(agendamiento)" (click)="onCambiarEstado(agendamiento)">Cambiar Estado</button>
+            <button class="btn btn-secundario cancelar" *ngIf="puedeCancelar(agendamiento)" (click)="onCancelar(agendamiento)">Cancelar</button>
         </div>
     </div>
 </div>

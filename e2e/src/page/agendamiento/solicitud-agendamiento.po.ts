@@ -1,4 +1,4 @@
-import { by, element, ElementFinder } from 'protractor';
+import { by, element } from 'protractor';
 
 export class SolicitudAgendamientoPage {
     
@@ -6,8 +6,8 @@ export class SolicitudAgendamientoPage {
     private selectFranja = element(by.css('[formcontrolname=franja]'));
     private calendar = element(by.css('.dp-calendar-wrapper'));   
     
-    async alertaInformativa(): Promise<ElementFinder> {
-        return await element(by.id('.swal2-popup.swal2-modal.swal2-icon-info'));
+    async mostroNotificacionInformativa(): Promise<Boolean> {
+        return element(by.css('.swal2-popup.swal2-modal.swal2-icon-info')).isPresent();
     }
         
     async seleccionaUnaFranja(valor: string) {
